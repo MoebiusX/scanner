@@ -3,14 +3,19 @@ angular.module('sample', [
   'ngRoute', 
   'ngCkeditor', 
 
+  'ui.bootstrap', 
+  'ngJsonExplorer',
+
   'sample.user', 
   'sample.search', 
   'sample.common', 
   'sample.detail',
+  'sample.create',
   
-  'ui.bootstrap', 
-  'ngJsonExplorer', 
-  'sample.create'
+  'hljs',
+  'highcharts-ng'
+
+
 ])
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
