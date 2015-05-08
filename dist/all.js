@@ -253,6 +253,20 @@ angular.module('sample.detail', []);
       }
 
       (function init() {
+      $scope.highchartsNG = {
+        options: {
+            chart: {
+                type: 'bar'
+            }
+        },
+        series: [{
+            data: [1,2,3]
+        }],
+        title: {
+            text: 'Top 3'
+        },
+        loading: false
+    }
         searchContext
           .search()
           .then(updateSearchResults);
