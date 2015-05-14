@@ -23,13 +23,13 @@
             }
         },
         series: [{
-            data: [1,2,3]
+            data: [2]
         }],
         title: {
-            text: 'Top 3'
+            text: 'Top'
         },
         loading: false
-    }
+    };
         searchContext
           .search()
           .then(updateSearchResults);

@@ -266,7 +266,7 @@ angular.module('sample.detail', []);
             text: 'Top 3'
         },
         loading: false
-    }
+    };
         searchContext
           .search()
           .then(updateSearchResults);
