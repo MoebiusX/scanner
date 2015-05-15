@@ -33,9 +33,9 @@
           <scheduled-task>
             <task-path>/schedules/errorOrder-data-pump.xqy</task-path>
             <task-root>/</task-root>
-            <task-type>minutely</task-type>
-            <task-period>15</task-period>
-            <task-minute>15</task-minute>
+            <task-type>hourly</task-type>
+            <task-period>1</task-period>
+            <task-minute>0</task-minute>
             <task-database name="@ml.content-db"/>
             <task-modules name="@ml.app-modules-db"/>
             <task-user name="admin"/>
@@ -211,7 +211,7 @@
           <collation>http://marklogic.com/collation/codepoint</collation>
           <range-value-positions>false</range-value-positions>
         </range-element-index>
-        
+
         <range-element-index>
           <scalar-type>string</scalar-type>
           <namespace-uri></namespace-uri>

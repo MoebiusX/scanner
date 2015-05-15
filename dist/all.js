@@ -58,6 +58,31 @@ module.filter('object2Array', function() {
   };
 });
 
+(function () {
+  'use strict';
+
+  angular.module('sample.detail')
+    .controller('DetailCtrl', ['$scope', 'MLRest', '$routeParams', function ($scope, mlRest, $routeParams) {
+      var uri = $routeParams.uri;
+      var model = {
+        // your model stuff here
+        detail: {}
+      };
+
+      mlRest.getDocument(uri, { format: 'json' }).then(function(response) {
+        model.detail = response.data;
+      });
+
+      angular.extend($scope, {
+        model: model
+
+      });
+    }]);
+}());
+
+
+angular.module('sample.detail', []);
+
 // Copied from https://docs.angularjs.org/api/ng/service/$compile
 angular.module('sample.create')
   .directive('compile', function($compile) {
@@ -154,31 +179,6 @@ angular.module('sample.create')
 angular.module('sample.create', []);
 
 (function () {
-  'use strict';
-
-  angular.module('sample.detail')
-    .controller('DetailCtrl', ['$scope', 'MLRest', '$routeParams', function ($scope, mlRest, $routeParams) {
-      var uri = $routeParams.uri;
-      var model = {
-        // your model stuff here
-        detail: {}
-      };
-
-      mlRest.getDocument(uri, { format: 'json' }).then(function(response) {
-        model.detail = response.data;
-      });
-
-      angular.extend($scope, {
-        model: model
-
-      });
-    }]);
-}());
-
-
-angular.module('sample.detail', []);
-
-(function () {
 
   'use strict';
 
@@ -260,10 +260,10 @@ angular.module('sample.detail', []);
             }
         },
         series: [{
-            data: [1,2,3]
+            data: [2]
         }],
         title: {
-            text: 'Top 3'
+            text: 'Top'
         },
         loading: false
     };

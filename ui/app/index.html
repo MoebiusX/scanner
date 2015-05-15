@@ -42,7 +42,21 @@
     <!-- Add your site or application content here -->
 
     <div ng-show="!model.user.authenticated">Please log in to see content</div>
-    <div id="myHC" ng-show="model.user.authenticated"><highchart id="chart1" config="highchartsNG"></highchart></div>
+    <div id="myHC" ng-show="model.user.authenticated">
+      <div style="width: 1200px; height: 600px; margin: 0 auto">
+        <div id="container-speed" style="width: 400px; height: 200px; float: left"></div>
+        <div id="container-rpm" style="width: 400px; height: 200px; float: left"></div>
+        <div id="container-error" style="width: 400px; height: 200px; float: left"></div>
+        <div id="myPieContainer" style="width: 600px; height: 400px; float: left"></div>
+        <div id="myContainer2" style="width: 600px; height: 400px; float: left"></div>
+        <highchart id="chart1" config="highchartsNG" style="width: 240px; height: 200px; float: left"></highchart>
+        <highchart id="chart2" config="highchartsNG" style="width: 240px; height: 200px; float: left"></highchart>
+        <highchart id="chart3" config="highchartsNG" style="width: 240px; height: 200px; float: left"></highchart>
+        <highchart id="chart4" config="highchartsNG" style="width: 240px; height: 200px; float: left"></highchart>
+        <highchart id="chart5" config="highchartsNG" style="width: 240px; height: 200px; float: left"></highchart>
+
+      </div>
+    </div>
     <div class="container" ng-view=""></div>
 
     <div id="footer">
@@ -63,6 +77,7 @@
 
     <script src="/bower_components/highcharts/highcharts.js"></script>
     <script src="/bower_components/highcharts/highcharts-more.js"></script>
+    <script src="/bower_components/highcharts/modules/solid-gauge.js"></script>
     <script src="/bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
 
     <!-- endbuild -->

@@ -9,6 +9,268 @@
         user: user
       };
 
+          var gaugeOptions = {
+
+        chart: {
+            type: 'solidgauge'
+        },
+
+        title: null,
+
+        pane: {
+            center: ['50%', '85%'],
+            size: '140%',
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                innerRadius: '60%',
+                outerRadius: '100%',
+                shape: 'arc'
+            }
+        },
+
+        tooltip: {
+            enabled: false
+        },
+
+        // the value axis
+        yAxis: {
+            stops: [
+                [0.1, '#55BF3B'], // green
+                [0.5, '#DDDF0D'], // yellow
+                [0.9, '#DF5353'] // red
+            ],
+            lineWidth: 0,
+            minorTickInterval: null,
+            tickPixelInterval: 400,
+            tickWidth: 0,
+            title: {
+                y: -70
+            },
+            labels: {
+                y: 16
+            }
+        },
+
+        plotOptions: {
+            solidgauge: {
+                dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                }
+            }
+        }
+    };
+
+    // The speed gauge
+    $('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
+        yAxis: {
+            min: 0,
+            max: 200,
+            title: {
+                text: 'Order Count'
+            }
+        },
+
+        credits: {
+            enabled: false
+        },
+
+        series: [{
+            name: 'Count',
+            data: [60],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                       '<span style="font-size:12px;color:silver">orders / hour</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' orders/day'
+            }
+        }]
+
+    }));
+
+    // The RPM gauge
+    $('#container-rpm').highcharts(Highcharts.merge(gaugeOptions, {
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: {
+                text: 'Warnings'
+            }
+        },
+
+        series: [{
+            name: 'Warnings',
+            data: [3],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                       '<span style="font-size:12px;color:silver">incidents / day</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' warnings/day'
+            }
+        }]
+
+    }));
+
+        // The RPM gauge
+    $('#container-error').highcharts(Highcharts.merge(gaugeOptions, {
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: {
+                text: 'Errors'
+            }
+        },
+
+        series: [{
+            name: 'Errors',
+            data: [0],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                       '<span style="font-size:12px;color:silver">incidents / day</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' errors/day'
+            }
+        }]
+
+    }));
+
+    // Bring life to the dials
+    setInterval(function () {
+        // Speed
+        var chart = $('#container-speed').highcharts(),
+            point,
+            newVal,
+            inc;
+
+        if (chart) {
+            point = chart.series[0].points[0];
+            inc = Math.round((Math.random() - 0.5) * 100);
+            newVal = point.y;
+
+            if (newVal < 0 || newVal > 200) {
+                newVal = point.y;
+            }
+
+            point.update(newVal);
+        }
+
+        // RPM
+        chart = $('#container-rpm').highcharts();
+        if (chart) {
+            point = chart.series[0].points[0];
+            inc = Math.random() - 0.5;
+            newVal = point.y;
+
+            if (newVal < 0 || newVal > 5) {
+                newVal = point.y;
+            }
+
+            point.update(newVal);
+        }
+    }, 2000);
+
+  $('#myPieContainer').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Incidents by type'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Incident type',
+            data: [
+                ['IDM timeout',   13],
+                ['NAS timeout',       11],
+                {
+                    name: 'B2B Gateway timeout',
+                    y: 9,
+                    sliced: true,
+                    selected: true
+                },
+                ['Database timeout',    3],
+                ['Gateway timeout',     3],
+                ['Others',   2]
+            ]
+        }]
+    });
+
+    $('#myContainer').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+
+    $('#myContainer2').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Incidents by business line'
+        },
+        xAxis: {
+            categories: ['Memory', 'Complex SOC', 'Microprocessors', 'Commodity Integrated Circuit']
+        },
+        yAxis: {
+            title: {
+                text: 'Business line'
+            }
+        },
+        series: [{
+            name: 'Errors',
+            data: [0, 0, 0, 0]
+        }, {
+            name: 'Warnings',
+            data: [14, 10, 3, 2]
+        }]
+    });
+
+
       var searchContext = mlRest.createSearchContext();
 
       function updateSearchResults(data) {
