@@ -285,10 +285,66 @@
             }
         },
         series: [{
+            data: [4]
+        }],
+        title: {
+            text: 'Order entry'
+        },
+        loading: false
+    };
+    $scope.highchartsNG2 = {
+        options: {
+            chart: {
+                type: 'bar'
+            }
+        },
+        series: [{
+            data: [5]
+        }],
+        title: {
+            text: 'Order fulfillment'
+        },
+        loading: false
+    };
+    $scope.highchartsNG3 = {
+        options: {
+            chart: {
+                type: 'bar'
+            }
+        },
+        series: [{
+            data: [3]
+        }],
+        title: {
+            text: 'Distribution'
+        },
+        loading: false
+    };
+    $scope.highchartsNG4 = {
+        options: {
+            chart: {
+                type: 'bar'
+            }
+        },
+        series: [{
+            data: [1]
+        }],
+        title: {
+            text: 'Invoicing'
+        },
+        loading: false
+    };
+    $scope.highchartsNG5 = {
+        options: {
+            chart: {
+                type: 'bar'
+            }
+        },
+        series: [{
             data: [2]
         }],
         title: {
-            text: 'Top'
+            text: 'Customer payment'
         },
         loading: false
     };
